@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/colorAccent"
+        android:text="Left Text"
+        android:layout_marginBottom="@dimen/margin_8dp"/>
+
+    <Button
+        android:id="@+id/btn_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Send text"
+        android:textColor="@color/colorAccent"
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="@dimen/margin_8dp"/>
+
+    <Button
+        android:id="@+id/btn_left_remove_right_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Remove right fragment"
+        android:textColor="@color/colorAccent"
+        android:background="@color/colorPrimary"/>
+
+</LinearLayout>
