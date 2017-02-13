@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.vadim.demofragmentscollback.R;
+import com.example.vadim.demofragmentscollback.ui.fragments.callbackExample.Summator;
+import com.example.vadim.demofragmentscollback.ui.fragments.callbackExample.SummatorCallback;
 
 /**
  * Created by Vadim on 05.02.2017.
@@ -20,6 +22,7 @@ public class LeftFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        summViaCallback();
         return inflater.inflate(R.layout.fragment_left, container, false);
     }
 
@@ -45,5 +48,16 @@ public class LeftFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void summViaCallback(){
+        Summator summator = new Summator(new SummatorCallback() {
+            @Override
+            public void result(int result) {
+                System.out.println(result);
+            }
+        });
+
+        summator.calculateSumm(20, 20);
     }
 }
