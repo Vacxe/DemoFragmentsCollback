@@ -14,29 +14,15 @@ import com.example.vadim.demofragmentscollback.R;
  * Created by Vadim on 05.02.2017.
  */
 
-public class RightFragment extends Fragment implements CallbackFragment{
-
-    TextView tvRight;
-
+public class RightFragment extends Fragment implements DisplayFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_right, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_right, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        tvRight = (TextView) getActivity().findViewById(R.id.tv_right);
-        LeftFragment leftFragment = (LeftFragment) getActivity().getSupportFragmentManager().findFragmentByTag(LeftFragment.class.getName());
-        if (leftFragment != null) {
-            leftFragment.registerCallBack(this);
-        };
-    }
-
-    @Override
-    public void callingBack(String s) {
-        tvRight.setText(s);
+    public void showText(String s) {
+        ((TextView) getView().findViewById(R.id.tv_right)).setText(s);
     }
 }

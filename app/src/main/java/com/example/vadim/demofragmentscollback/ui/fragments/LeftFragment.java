@@ -17,41 +17,29 @@ import com.example.vadim.demofragmentscollback.R;
 
 public class LeftFragment extends Fragment {
 
-    TextView tvLeft;
-
-    Button buttonSend, buttonRemoveRightFragment;
-
-    CallbackFragment callbackFragment;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_left, container, false);
-        tvLeft = (TextView) rootView.findViewById(R.id.tv_left);
-        buttonSend = (Button) rootView.findViewById(R.id.btn_send);
-        buttonRemoveRightFragment = (Button) rootView.findViewById(R.id.btn_left_remove_right_fragment);
-        return rootView;
-    }
-
-    public void registerCallBack(CallbackFragment callback){
-        this.callbackFragment = callback;
+        return inflater.inflate(R.layout.fragment_left, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        buttonSend.setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.btn_send).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // вызываем метод обратного вызова
-                callbackFragment.callingBack("Сообщение из левого фрагмента");
+                DisplayFragment rightFragment = (DisplayFragment) getActivity().getSupportFragmentManager().findFragmentByTag(RightFragment.class.getName());
+                if(rightFragment != null){
+                    rightFragment.showText("Сообщение из левого фрагмента");
+                }
             }
         });
 
-        buttonRemoveRightFragment.setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.btn_left_remove_right_fragment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RightFragment rightFragment = (RightFragment) getActivity().getSupportFragmentManager().findFragmentByTag(RightFragment.class.getName());
+                Fragment rightFragment =  getActivity().getSupportFragmentManager().findFragmentByTag(RightFragment.class.getName());
                 if (rightFragment != null) {
                     getActivity().getSupportFragmentManager().beginTransaction().remove(rightFragment).commit();
                 }
